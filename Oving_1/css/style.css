@@ -1,0 +1,145 @@
+.header { grid-area: header; }
+.menu { grid-area: menu; }
+.block1 { grid-area: left; }
+.block2{ grid-area: right; }
+.footer { grid-area: footer; }
+
+/* Base grid layout */
+.grid-container {
+    display: grid;
+    grid-template-areas:
+        'header header header header header header'
+        'menu menu menu menu menu menu'
+        'left left left right right right'
+        'footer footer footer footer footer footer';
+    grid-template-rows: auto auto 1fr auto;
+    gap: 10px;
+    background-color: #f0f0f0; /* Light gray background */
+    padding: 10px;
+    color: #333; /* Dark gray text for contrast */
+    font-family: 'Arial', sans-serif;
+}
+
+/* Medium screens (tablets) */
+@media (max-width: 768px) {
+    .grid-container {
+        grid-template-areas:
+            'header'
+            'menu'
+            'left'
+            'right'
+            'main'
+            'footer';
+    }
+
+    .menu {
+        flex-direction: column;
+    }
+}
+
+/* Style for the grid items */
+.grid-container > div {
+    background-color: rgba(255, 255, 255, 0.9); /* White with slight transparency */
+    text-align: center;
+    padding: 20px 0;
+    font-size: 30px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.1); /* Softer shadow */
+    transition: transform 0.2s;
+}
+
+.grid-container > div:hover {
+    transform: scale(1.02); /* Reduced zoom effect */
+}
+
+/* Header and Footer Styles */
+.header, .footer {
+    background-color: #9b59b6; /* Purple color */
+    color: white;
+}
+
+.menu {
+    background-color: #e0e0e0; /* Lighter gray for menu */
+}
+
+.menu ul {
+    display: flex; /* Set the ul to use flexbox */
+    flex-wrap: wrap; /* Allow items to wrap */
+    padding: 0;
+    margin: 0; /* Reset margins */
+    align-items: center; /* Align items vertically */
+    justify-content: center; /* Center items horizontally */
+}
+
+.menu li {
+    display: flex; /* Make list items flex items */
+    margin: 5px; /* Add some margin for spacing */
+    padding: 5px;
+    background-color: #fff; /* Optional: for better visibility */
+    border-radius: 5px; /* Optional: for rounded corners */
+}
+
+.menu a {
+    text-decoration: none;
+    color: #5e5e5e; /* Darker gray for contrast */
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.menu a:hover {
+    color: #9b59b6; /* Purple accent on hover */
+}
+
+/* Button Styles */
+button {
+    background-color: #9b59b6; /* Purple buttons */
+    color: white;
+    padding: 15px 25px;
+    margin: 10px 0;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background-color: #8e44ad; /* Darker shade of purple on hover */
+    transform: translateY(-2px);
+}
+
+/* Image Styles */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 10px auto;
+    border-radius: 10px; /* Rounded corners for images */
+}
+
+/* Logo Styles */
+#logo {
+    width: 120px; /* Slightly larger logo */
+    height: auto; /* Auto-adjust height */
+    display: block;
+    margin: 10px auto;
+}
+
+.block1 img, .block2 img {
+    width: 80%;
+    margin: 20px auto;
+    display: block;
+}
+
+/* Animations and Interactivity */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+#toggleContent {
+    display: none;
+    animation: fadeIn 0.5s;
+}
+
