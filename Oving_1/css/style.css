@@ -51,6 +51,10 @@
     transform: scale(1.02); /* Reduced zoom effect */
 }
 
+.header {
+    background-image: url('../images/sky.png');
+}
+
 /* Header and Footer Styles */
 .header, .footer {
     background-color: #9b59b6; /* Purple color */
@@ -76,6 +80,7 @@
     padding: 5px;
     background-color: #fff; /* Optional: for better visibility */
     border-radius: 5px; /* Optional: for rounded corners */
+    font-family: 'Futura', sans-serif;
 }
 
 .menu a {
@@ -87,6 +92,8 @@
 
 .menu a:hover {
     color: #9b59b6; /* Purple accent on hover */
+    font-family: 'Comic Sans MS', sans-serif;
+
 }
 
 /* Button Styles */
