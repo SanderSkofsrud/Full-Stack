@@ -8,10 +8,10 @@
 .grid-container {
     display: grid;
     grid-template-areas:
-        'header header header header header header'
-        'menu menu menu menu menu menu'
-        'left left left right right right'
-        'footer footer footer footer footer footer';
+        'header header'
+        'menu menu'
+        'left right'
+        'footer footer';
     grid-template-rows: auto auto 1fr auto;
     gap: 10px;
     background-color: #f0f0f0; /* Light gray background */
