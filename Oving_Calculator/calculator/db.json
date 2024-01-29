@@ -1,3 +1,52 @@
 {
-  "contacts": []
+  "contacts": [
+    {
+      "id": "45d5",
+      "name": "Sander",
+      "email": "sander@skofsrud.net",
+      "message": "Super side!"
+    },
+    {
+      "id": "46f6",
+      "name": "Elias",
+      "email": "eliastt@gmail.com",
+      "message": "Tenk å lage en så fin css, could never be me!"
+    },
+    {
+      "id": "97e0",
+      "name": "Malin",
+      "email": "malinhh@gmail.com",
+      "message": "Jeg er så fucked, Revolve er selve døden. Fin side da :*"
+    },
+    {
+      "id": "8d24",
+      "name": "test",
+      "email": "test@test.test",
+      "message": "test"
+    },
+    {
+      "id": "fc1e",
+      "name": "test",
+      "email": "test@test.test",
+      "message": "test1"
+    },
+    {
+      "id": "5a33",
+      "name": "test",
+      "email": "test@test.test",
+      "message": "test12"
+    },
+    {
+      "id": "cb35",
+      "name": "test",
+      "email": "test@test.test",
+      "message": "test123"
+    },
+    {
+      "id": "10fc",
+      "name": "test",
+      "email": "test@test.test",
+      "message": "test1234"
+    }
+  ]
 }

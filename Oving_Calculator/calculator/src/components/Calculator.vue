@@ -277,6 +277,11 @@ export default {
   border-radius: 5px; /* Rounded corners for buttons */
 }
 
+.button-row button:hover {
+  /* Style for button when hovered */
+  background-color: #666; /* Slightly darker color on hover for feedback */
+}
+
 .button-row button:active {
   /* Style for button when actively clicked */
   background-color: #777; /* Slightly lighter color on click for feedback */

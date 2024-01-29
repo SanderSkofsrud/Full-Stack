@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { ref, computed } from 'vue';
+import { ref, watch, computed } from 'vue';
 import { useStore } from 'vuex';
 
 export default {
@@ -30,9 +30,20 @@ export default {
       message: ''
     });
 
-    const isFormInvalid = computed(() => {
-      return !contact.value.name || !contact.value.email || !contact.value.message;
+    watch(() => contact.value.name, (newName) => {
+      store.commit('updateName', newName);
     });
+
+    watch(() => contact.value.email, (newEmail) => {
+      store.commit('updateEmail', newEmail);
+    });
+
+    const isFormInvalid = computed(() => {
+      const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      const isEmailValid = emailRegex.test(contact.value.email);
+      return !contact.value.name || !isEmailValid || !contact.value.message;
+    });
+
 
     const submitForm = async () => {
       const response = await fetch('http://localhost:3000/contacts', {
@@ -55,3 +66,52 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+/* Scoped ensures styles only apply to this component */
+
+form {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box; /* Include padding in width */
+}
+
+button {
+  background-color: #42b983;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+button[type="submit"]:hover:not(:disabled) {
+  background-color: #36a569;
+}
+</style>
