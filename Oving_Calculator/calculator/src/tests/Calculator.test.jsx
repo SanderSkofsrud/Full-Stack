@@ -44,4 +44,25 @@ describe('SimpleCalculator', () => {
         wrapper.vm.clear();
         expect(wrapper.vm.displayInput).toBe('0');
     });
+
+    it('should handle complex expressions', () => {
+        const wrapper = mount(SimpleCalculator);
+        simulateUserInput(wrapper, ['(', '3', '+', '5', ')', '*', '2']);
+        wrapper.vm.calculate();
+        expect(wrapper.vm.displayInput).toBe('16');
+    });
+
+    it('should handle decimal calculations', () => {
+        const wrapper = mount(SimpleCalculator);
+        simulateUserInput(wrapper, ['2', '.', '5', '*', '4']);
+        wrapper.vm.calculate();
+        expect(wrapper.vm.displayInput).toBe('10');
+    });
+
+    it('should display error on division by zero', () => {
+        const wrapper = mount(SimpleCalculator);
+        simulateUserInput(wrapper, ['5', '/', '0']);
+        wrapper.vm.calculate();
+        expect(wrapper.vm.displayInput).toContain('Division by zero is not allowed');
+    });
 });
