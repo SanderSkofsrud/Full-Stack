@@ -50,11 +50,11 @@ export default {
       let displayedReviews = [];
       let totalReviews = reviews.value.length;
       if (totalReviews > 0) {
-        for (let i = -2; i <= 3; i++) {
+        for (let i = -1; i <= 2; i++) { // Change this to -1 and 2 to show four reviews at a time
           let index = (currentIndex.value + i + totalReviews) % totalReviews;
           displayedReviews.push({
             ...reviews.value[index],
-            blurred: i === -2 || i === 3
+            blurred: i === -1 || i === 2 // Blur the first and last of the four displayed reviews
           });
         }
       }

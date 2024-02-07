@@ -1,6 +1,6 @@
 describe('Contact Form Validation', () => {
     beforeEach(() => {
-        cy.visit('http://localhost:8081/contactForm');
+        cy.visit('http://localhost:8080/contactForm');
     });
 
     it('Submit button should be disabled if form is invalid', () => {

@@ -70,12 +70,20 @@ export default {
         const data = await response.json();
         if (data) {
           alert('Success');
+
+          // Reset local form state
+          contact.value = { name: '', email: '', message: '' };
+
+          // Reset store state
+          store.commit('resetContact'); // Replace 'resetContact' with the appropriate mutation/action
+
           store.commit('updateContact', contact.value);
         }
       } catch (error) {
-        alert(error.message); // Alert the error message
+        alert(error.message);
       }
     };
+
 
     return { contact, isFormInvalid, submitForm };
   }

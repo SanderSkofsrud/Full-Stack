@@ -17,11 +17,14 @@ export default createStore({
         updateEmail(state, email) {
             state.contact.email = email;
         },
-
         // Keeping your existing mutation in case it's used elsewhere
         updateContact(state, contact) {
             state.contact.name = contact.name;
             state.contact.email = contact.email;
+        },
+        resetContact(state) {
+            state.contact.name = '';
+            state.contact.email = '';
         }
     },
     actions: {},

@@ -84,23 +84,6 @@ describe('ContactForm', () => {
         expect(wrapper.vm.isFormInvalid).toBeTruthy();
     });
 
-    /*
-        it('should commit updateName mutation on name input change', async () => {
-            const store = createMockStore();
-            const wrapper = mount(ContactForm, {
-                global: {
-                    plugins: [store]
-                }
-            });
-
-            const newName = 'Jane Doe';
-            await wrapper.find('#name').setValue(newName);
-            await wrapper.vm.$nextTick();
-
-            expect(store.commit).toHaveBeenCalledWith('updateName', newName);
-        });
-    */
-
     it('should handle form submission failure', async () => {
         // Override the global fetch for this test
         global.fetch = vi.fn(() => Promise.reject(new Error('Network Error')));
