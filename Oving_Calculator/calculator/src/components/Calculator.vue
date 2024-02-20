@@ -46,6 +46,7 @@
 
 <script>
 import {evaluate} from 'mathjs'; // Importing 'evaluate' function from the mathjs library for calculation
+import axios from 'axios'; // Importing axios for making HTTP requests
 import CalculatorLog from "@/components/CalculatorLog.vue"; // Importing CalculatorLog component
 
 export default {
@@ -99,7 +100,7 @@ export default {
     },
 
     // Perform the calculation
-    calculate() {
+    async calculate() {
       if (!this.areParenthesesBalanced()) {
         // Check for balanced parentheses
         this.currentInput = 'Parentheses not balanced';
@@ -113,12 +114,18 @@ export default {
           throw new Error('Division by zero is not allowed');
         }
         // Calculate the result using mathjs's evaluate function
-        const result = this.safeCalculate(this.currentInput).toString();
+        //const result = this.safeCalculate(this.currentInput).toString();
+        console.log(this.currentInput)
+        const response = await axios.post('http://localhost:8081/calculate', this.currentInput, {
+          headers: {
+            'Content-Type': 'text/plain'
+          }
+        });
         // Update the calculation log with the expression and result
-        this.updateCalculationLog(this.currentInput, result);
+        this.updateCalculationLog(this.currentInput, response.data.result);
         // Update lastAnswer and currentInput with the result
-        this.lastAnswer = result;
-        this.currentInput = result;
+        this.lastAnswer = response.data.result;
+        this.currentInput = response.data.result;
         // Set flags indicating successful calculation and no error
         this.justCalculated = true;
         this.isError = false;
