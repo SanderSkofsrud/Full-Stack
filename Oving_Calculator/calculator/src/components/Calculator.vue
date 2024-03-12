@@ -47,7 +47,7 @@
 <script>
 import {evaluate} from 'mathjs'; // Importing 'evaluate' function from the mathjs library for calculation
 import axios from 'axios'; // Importing axios for making HTTP requests
-import CalculatorLog from "@/components/CalculatorLog.vue"; // Importing CalculatorLog component
+import CalculatorLog from "@/components/CalculatorLog.vue";
 
 export default {
   name: 'SimpleCalculator', // Component name
@@ -116,19 +116,29 @@ export default {
         // Calculate the result using mathjs's evaluate function
         //const result = this.safeCalculate(this.currentInput).toString();
         console.log(this.currentInput)
-        const response = await axios.post('http://localhost:8081/calculate', this.currentInput, {
-          headers: {
-            'Content-Type': 'text/plain'
-          }
-        });
-        // Update the calculation log with the expression and result
-        this.updateCalculationLog(this.currentInput, response.data.result);
-        // Update lastAnswer and currentInput with the result
-        this.lastAnswer = response.data.result;
-        this.currentInput = response.data.result;
-        // Set flags indicating successful calculation and no error
-        this.justCalculated = true;
-        this.isError = false;
+
+        try {
+          const payload = {
+            expression: this.currentInput,
+          };
+          console.log(payload)
+
+          const response = await axios.post('http://localhost:8081/calculate', payload);
+          // Update the calculation log with the expression and result
+          this.updateCalculationLog(this.currentInput, response.data.result);
+          // Update lastAnswer and currentInput with the result
+          this.lastAnswer = response.data.result;
+          this.currentInput = response.data.result;
+          // Set flags indicating successful calculation and no error
+          this.justCalculated = true;
+          this.isError = false;
+        } catch (error) {
+          // Handle any calculation errors
+          this.currentInput = error.message || 'Error';
+          // Set flags indicating calculation error
+          this.isError = true;
+          this.justCalculated = false;
+        }
       } catch (error) {
         // Handle any calculation errors
         this.currentInput = error.message || 'Error';

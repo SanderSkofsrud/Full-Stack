@@ -1,6 +1,7 @@
 package edu.ntnu.idatt2105.controller;
 
 import edu.ntnu.idatt2105.model.Calculate;
+import edu.ntnu.idatt2105.model.CalculationRequest;
 import edu.ntnu.idatt2105.service.CalculationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -26,11 +27,12 @@ public class CalculationController {
   /**
    * Endpoint to calculate an arithmetic expression.
    *
-   * @param expression The arithmetic expression to calculate.
+   * @param calculationRequest The arithmetic expression to calculate.
    * @return Calculate object containing the result of the calculation.
    */
   @PostMapping("/calculate")
-  public Calculate calculateExpression(@RequestBody String expression) {
+  public Calculate calculateExpression(@RequestBody CalculationRequest calculationRequest) {
+    String expression = calculationRequest.getExpression();
     logger.info("Received calculation request for expression: {}", expression);
     Calculate result = calculationService.performCalculation(expression);
     logger.info("Calculation result: {}", result);
