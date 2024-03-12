@@ -1,4 +1,10 @@
 package edu.ntnu.idatt2105.repository;
 
-public class UserRepository {
+import edu.ntnu.idatt2105.model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.Optional;
+
+public interface UserRepository extends JpaRepository<User, String> {
+  Optional<User> findByUsername(String username);
 }
